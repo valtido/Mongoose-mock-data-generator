@@ -1,0 +1,29 @@
+{
+  "name": "generator",
+  "version": "0.0.0",
+  "description": "Mongoose Schema - Mock Data Generator",
+  "main": "index.js",
+  "dependencies": {
+    "mongoose": "*"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/valtido/generator"
+  },
+  "keywords": [
+    "mock",
+    "generator",
+    "data",
+    "schema",
+    "mongoose"
+  ],
+  "author": "Valtid Caushi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/valtido/generator/issues"
+  },
+  "homepage": "https://github.com/valtido/generator"
+}
