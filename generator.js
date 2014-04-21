@@ -1,4 +1,4 @@
-module.exports = function(schema,undefined){
+module.exports = function(schema,num,undefined){
 	function randomDate(start, end) {
 		if(start == undefined) start = new Date(1970)
 		if(end == undefined) end = new Date()
@@ -18,7 +18,7 @@ module.exports = function(schema,undefined){
 	}
 	var gen = {
 		date: function(){
-			return randomDate();
+			return randomDate().toString();
 		},
 		boolean: function(){
 			return this.bool()
@@ -53,7 +53,7 @@ module.exports = function(schema,undefined){
 		}else{
 			console.log(type.length, typeof type, type instanceof Object)
 		}
-		s = s.toString().toLowerCase()
+		if(s!=undefined) s = s.toString().toLowerCase()
 		if(gen[s] != undefined) return gen[s]();
 
 		return "type_not_found: "+ type
@@ -89,5 +89,5 @@ module.exports = function(schema,undefined){
 		}//end range
 		return arr;
 	}
-	return init(schema)//start init
+	return init(schema,num)//start init
 }
