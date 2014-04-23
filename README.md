@@ -33,4 +33,4 @@ Generate some mock data.
 # Contributions are welcomed.
 
 This script is very minimalistic, if you like it, or wish to help and get involved suggestions are 
-welcomed at the issues page (https://github.com/valtido/generator/issues)
+welcomed at the issues page https://github.com/valtido/generator/issues
