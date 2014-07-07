@@ -44,13 +44,17 @@ module.exports = function(schema,num,undefined){
 	;
 
 	var get = function(type){
-		// console.log(type.name)
+		// console.log(type.name,type)
+		// if(type.length == 1 && typeof type[0] == "object")
+		// console.log(type.length,type.length == 1 && typeof type == "object", type)
+		console.log(type.name)
 		var s = "";
 		if(type.name != undefined ) {
 			s = type.name
 		}else if(type.type != undefined && type.type.name){
 			s = type.type.name
 		}else if(type.length == 1 && typeof type == "object" && type[0].tree!=undefined){
+			console.log(type)
 			s = "schema"
 			return init(type[0].tree)
 		}else if(typeof type=="object", type instanceof Object == true){
@@ -87,9 +91,9 @@ module.exports = function(schema,num,undefined){
 			for(prop in schema){
 				if(exc.indexOf(prop) !== -1) continue;
 				var type = schema[prop];
-
-				if(type instanceof Array) 	arr[i][prop] = init(type);
-				else 												arr[i][prop] = get(type, num);
+				// console.log(type,'==')
+				if(type instanceof Array) 	arr[i][prop] = init(type[0].schema.tree,num);
+				else 												arr[i][prop] = get(type);
 			}//end loop schema
 			
 			i++;//increment by 1
