@@ -1,4 +1,6 @@
 module.exports = function(schema,num,undefined){
+	var mongoose = require('mongoose');
+
 	function randomDate(start, end) {
 		if(start == undefined) start = new Date(1970)
 		if(end == undefined) end = new Date()
@@ -17,6 +19,9 @@ module.exports = function(schema,num,undefined){
 		return arr;
 	}
 	var gen = {
+		objectid: function(){
+			return mongoose.Types.ObjectId()
+		},
 		date: function(){
 			return randomDate().toString();
 		},
@@ -33,7 +38,7 @@ module.exports = function(schema,num,undefined){
 			return Math.random().toString(36).replace(/[^a-z]+/g, '') 
 		},
 		array: function(){
-			return [1,2,3,4,5,6,7,8,9,10]
+			return new Array(num)
 		}
 	}
 	;
@@ -54,6 +59,7 @@ module.exports = function(schema,num,undefined){
 			console.log(type.length, typeof type, type instanceof Object)
 		}
 		if(s!=undefined) s = s.toString().toLowerCase()
+		// console.log(s)
 		if(gen[s] != undefined) return gen[s]();
 
 		return "type_not_found: "+ type
@@ -81,7 +87,9 @@ module.exports = function(schema,num,undefined){
 			for(prop in schema){
 				if(exc.indexOf(prop) !== -1) continue;
 				var type = schema[prop];
-				arr[i][prop] = get(type);
+
+				if(type instanceof Array) 	arr[i][prop] = init(type);
+				else 												arr[i][prop] = get(type, num);
 			}//end loop schema
 			
 			i++;//increment by 1
